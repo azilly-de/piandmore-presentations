@@ -1,0 +1,520 @@
+<!doctype html>
+<html  lang="de">
+<!--
+Copyright [2017] [Andreas Zilly]
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+-->
+    <head>
+        <meta charset="utf-8" />
+
+        <title>Pi and more 10.5 - Raspberry Pi Zero als USB Gadget</title>
+        <meta name="description" content="Raspberry Pi Zero als USB Gadget" />
+        <meta name="author" content="Andreas Zilly" />
+
+        <link rel="stylesheet" href="css/reveal.css" />
+        <link rel="stylesheet" href="css/theme/solarized.css" id="theme" />
+        <link rel="stylesheet" href="css/custom.css">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+        <!-- Theme used for syntax highlighting of code -->
+        <link rel="stylesheet" href="lib/css/zenburn.css">
+
+        <!-- font-awesome -->
+        <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+
+        <!-- Printing and PDF exports -->
+        <script>
+            var link = document.createElement( 'link' );
+            link.rel = 'stylesheet';
+            link.type = 'text/css';
+            link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+            document.getElementsByTagName( 'head' )[0].appendChild( link );
+        </script>
+    </head>
+    <body>
+        <!-- Header und Footer (from custom.css) -->
+        <div id="hidden" style="display:none;">
+            <div id="header">
+                <div id="header-center">Raspberry Pi Zero als USB Gadget</div>
+                <div id="footer-left"><i class="fa fa-twitter"></i>@AndreasZilly - Pi and more 10.5</div>
+            </div>
+        </div>
+
+        <!-- Präsentation -->
+        <div class="reveal">
+            <div class="slides">
+                <!-- Titel, Bio, Agenda -->
+                <section>
+                    <h1>Raspberry Pi Zero als USB Gadget</h1>
+                    <h3>Andreas Zilly</h3>
+                    <div>
+                        <p>wo was wie</p>
+                    <div>
+                    +logos....
+                </section>
+                <section>
+                    <h3>bio</h3>
+                    <img src="img/Photo_azy.jpg">
+                    <p align="left"><i class="fa fa-twitter"></i>@AndreasZilly</p>
+                    <p align="left"><i class="fa fa-github"></i>www.github.com/azilly-de</p>
+                    <p align="left"><i class="fa fa-envelope"></i>andreas.zilly@???????.de</p>
+                </section>
+                <section>
+                    <div data-markdown>
+                        <textarea data-template>
+                        #### Agenda
+                        - Spezifikation RaspberryPi Zero(W)
+                        - Motivation
+                        - USB Gadget Mode
+                        - Konfiguration bei Raspbian
+                        - Demo verschiedener USB Gadget
+                           - Ethernet
+                           - Remote GPIO
+                           - Serielle Schnittstelle
+                        - Weitere...
+                        - Fazit
+                        </textarea>
+                    </div>
+                </section>
+
+        <!-- Raspberry Pi Zero (W) -->
+        <!-- <img src="img/usb_gadget/Raspberry-Pi-Zero-Overhead-1-1748x1080.jpg" width="200"> -->
+                <section>
+                    <section>
+                        <h3>Raspberry Pi Zero</h3>
+                        <div style="display:flex;">
+                            <div data-markdown style="flex: 0 0 45%;">
+                                <textarea data-template >
+                                ![RaspberryPi Zero](img/usb_gadget/Raspberry-Pi-Zero_sm.jpg)
+                                </textarea>
+                            </div>
+                            <div data-markdown style="flex: 1;">
+                                <textarea data-template >
+                                - 1GHz, Single-core CPU
+                                - 512MB RAM
+                                - Mini-HDMI port
+                                - µUSB OTG port
+                                - µUSB power
+                                - HAT-compatible 40-pin header
+                                - Composite video and reset headers
+                                - CSI camera connector
+                                </textarea>
+                            </div>
+                        </div>
+                    </section>
+                    <section>
+                        <h3>Raspberry Pi Zero W</h3>
+                        <div style="display:flex;">
+                        <div data-markdown style="flex: 0 0 45%;">
+                            <textarea data-template >
+				    ![RaspberryPi Zero W](img/usb_gadget/Raspberry-Pi-Zero_W_sm.jpg)
+                            </textarea>
+                        </div>
+                        <div data-markdown style="flex: 1;">
+                            <textarea data-template >
+                            ###### Zusätzlich:
+
+                            - 802.11 b/g/n wireless LAN
+                            - Bluetooth 4.1
+                            - Bluetooth Low Energy (BLE)
+                            </textarea>
+                        </div>
+                        </div>
+                    </section>
+                </section>
+
+        <!-- Motivation -->
+                <section>
+                    <section data-markdown>
+                        <textarea data-template>
+                        ###### Zur Inbetriebnahme werden benötigt...
+
+                        - SD-Karte
+                        - µUSB-Kabel
+                        - OTG-Kabel oder Adapter
+                        - USB-Hub
+                        - USB-Netzteil
+                        - Tastatur / Maus
+                        - HDMI-Adapter
+                        - Monitor
+                        - ...
+                        </textarea>
+                    </section>
+                    <section data-markdown>
+                        <textarea data-template>
+                        ###### Warum nicht einfach nur...
+
+                        - SD-Karte
+                        - µUSB-Kabel
+                        </textarea>
+                    </section>
+                </section>
+
+        <!-- USB Gadget Mode -->
+                <section data-markdown>
+                    <textarea data-template>
+                    ## Linux USB Gadget Mode
+
+                    #### Möglichkeit über den USB-OTG-Port verschiedene USB-Geräte zu emulieren:
+
+                    - serielle Schnittstelle *(g_serial)*
+                    - Netzwerkschnittstelle *(g_ether)*
+                    - USB-Speicher *(g_mass_storage)*
+                    - Eingabegeräte wie Maus oder Tastatur *(g_hid)*
+                    - MIDI *(g_midi)*
+                    - Audio *(g_audio)*
+                    - Webcam *(g_webcam)*
+                    - Mehrere Geräte gleichzeitig *(g_multi)* => ether, serial, mass_storage
+			    </textarea>
+                    <!-- https://github.com/torvalds/linux/tree/master/drivers/usb/gadget       => zur weiterführenden Dokumentation verschieben         -->
+                </section>
+
+        <!--Grundkonfiguration -->
+              <section>
+                <h2>Grundlegende Konfiguration</h2>
+                <section>
+                    * image auf sd card transferieren
+                    * boot-Partition öffnen (unter ... möglich)
+                    * leere Datei "ssh" anlegen (z.B. touch ssh)
+                    <!-- <p>Aktivierung ssh Dienst </p> -->
+                    <!-- <div> -->
+                        <!-- <p>$ touch ssh</p> -->
+                    <!-- </div> -->
+                </section>
+                <section>
+                    <div>
+                        <pre><code class="hljs" data-trim data-noescape>
+                            #...
+                            #dtparam=spi=on
+
+                            # Uncomment this to enable the lirc-rpi module
+                            #dtoverlay=lirc-rpi
+
+                            # Additional overlays and parameters are documented /boot/overlays/R..
+
+                            # Enable audio (loads snd_bcm2835)
+                            dtparam=audio=on
+
+                            <mark># Enable USB-Gadget
+                            dtoverlay=dwc2</mark>
+                        </code></pre>
+                    </div>
+                    <p>edit config.txt</p>
+                </section>
+                </section>
+
+        <!-- Ethernet Gadget -->
+                <section>
+                    <h2>Ethernet Gadget</h2>
+                    <section>
+                        <p>Editieren "cmdline.txt": </p>
+                        <div>
+                            <pre><code class="hljs" data-trim data-noescape>
+                            dwc_otg.lpm_enable=0 console=serial0,115200 console=tty1
+                            root=PARTUUID=49783f5b-02 rootfstype=ext4 elevator=deadline
+                            fsck.repair=yes rootwait <mark>modules-load=dwc2,g_ether</mark>
+                            quiet init=/usr/lib/raspi-config/init_resize.sh splash
+                            plymouth.ignore-serial-consoles
+                            </code></pre>
+                        </div>
+                        <div style="border: 5px solid red;">
+                            <p>Alles in einer Zeile! Keine Zeilenumbrüche einfügen!</p>
+                        </div>
+                    </section>
+                    <section>
+                        Was wird noch benötigt? (Linux Kenntnisse ;P)
+                        ahavi, bonjour für .local
+                    </section>
+                    <section>
+                        <h2>Demo</h2>
+                    </section>
+                </section>
+
+        <!-- Remote GPIO -->
+                <section>
+                    <h2>Remote GPIO</h2>
+                    <section>
+                        <p>Editieren "cmdline.txt": </p>
+                        <div>
+                            <pre><code class="hljs" data-trim data-noescape>
+                            dwc_otg.lpm_enable=0 console=serial0,115200 console=tty1
+                            root=PARTUUID=49783f5b-02 rootfstype=ext4 elevator=deadline
+                            fsck.repair=yes rootwait <mark>modules-load=dwc2,g_ether</mark>
+                            quiet init=/usr/lib/raspi-config/init_resize.sh splash
+                            plymouth.ignore-serial-consoles
+                            </code></pre>
+                        </div>
+                        <div style="border: 5px solid red;">
+                            <p>Alles in einer Zeile! Keine Zeilenumbrüche einfügen!</p>
+                        </div>
+                        <p>ssh benötigt?</p>
+                        <p>zusätzlich usbbootgui auf eeePC</p>
+                    </section>
+                    <section>
+                        Was wird noch benötigt? (Linux Kenntnisse ;P)
+                        !! LED an GPIO !!
+                    </section>
+                    <section>
+                        <h2>Demo</h2>
+                    </section>
+                </section>
+
+        <!-- HID -->
+        <!-- Zeitlich überhaupt möglich? - Vorbereitung? über configfs -->
+                <section>
+                    <section>
+                        <h3>HID</h3>
+                        Taster am gpio (Pogopins und Breadboard)
+                    </section>
+                    <section>
+                        <h3>HID</h3>
+                        Was wird noch benötigt? (Linux Kenntnisse ;P)
+                    </section>
+                    <section>
+                        <h2>Demo</h2>
+                    </section>
+                </section>
+
+        <!-- Serielles Gadget -->
+                <section>
+                    <h2>Serielles Gadget</h2>
+                    <section>
+                        <p>Editieren "cmdline.txt": </p>
+                        <div>
+                            <pre><code class="hljs" data-trim data-noescape>
+                            dwc_otg.lpm_enable=0 console=serial0,115200 console=tty1
+                            root=PARTUUID=49783f5b-02 rootfstype=ext4 elevator=deadline
+                            fsck.repair=yes rootwait <mark>modules-load=dwc2,g_serial</mark>
+                            quiet init=/usr/lib/raspi-config/init_resize.sh splash
+                            plymouth.ignore-serial-consoles
+                            </code></pre>
+                        </div>
+                        <div style="border: 5px solid red;">
+                            <p>Alles in einer Zeile! Keine Zeilenumbrüche einfügen!</p>
+                        </div>
+                    </section>
+                    <section>
+                        <p>Auf Grund [] wird ein laufendes System benötigt:</p>
+                        <div>
+                            <pre><code class="hljs" data-trim data-noescape>
+                                pi@raspberrypi:~ $ sudo systemctl enable getty@ttyGS0.service
+                            </code></pre>
+                        <div>
+                        Was wird noch benötigt? (Linux Kenntnisse ;P)
+                        Überprüfen ob noch nötig (...)
+                    </section>
+                    <section>
+                        <h2>Demo</h2>
+                    </section>
+                </section>
+
+        <!-- Weiterführende Dokumentation -->
+                <section>
+                    <h2>Weiterführende Dokumentation</h2>
+                    Dokumentation [link](https://github.com/torvalds/linux/tree/master/drivers/usb/gadget)
+                </section>
+
+        <!-- Weitere Möglichkeiten -->
+                <section>
+                    <h2>Weitere Möglichkeiten</h2>
+                </section>
+
+        <!-- Fazit -->
+                <section>
+                    <h2>Fazit</h2>
+                </section>
+
+        <!-- Abschluss -->
+                <section>
+                    <h3>Abschluss</h3>
+                    <!-- <div style="position: relative" > -->
+                        <!-- <img class="img-inline"  src="/anz.jpg" /> -->
+                        <!-- <img class="img-inline" style="position: absolute; top: 0; left: 55px;" src="/anz.jpg" /> -->
+                    <!-- </div> -->
+                </section>
+
+                <section>
+                        <section>
+                      <h2>Resources</h2>
+                      <p>
+                        <a href="https://github.com/keimlink/the-title-of-your-presentation">
+                          <i class="fa fa-github"></i>keimlink/the-title-of-your-presentation
+                        </a>
+                      </p>
+                      <p>
+                        <a href="https://twitter.com/keimlink">
+                          <i class="fa fa-twitter"></i>@keimlink
+                        </a>
+                      </p>
+                      <p class="creativecommons">
+                        <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+                          <img alt="Creative Commons License" src="img/cc-by-88x31.png" />
+                        </a><br>
+                        <span>This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+                      </p>
+                    </section>
+                </section>
+                <section>
+                    <section>
+                    <h2>Main</h2>
+                    <!-- <a href="#"> -->
+                    <!-- <img width="250" height="280" data-src="/anz.jpg" alt="hui!"> -->
+                    <!-- </a> -->
+
+                    <div class="ulist">
+                        <img src="..." alt="Hui" width="10%" style="float: right">
+                        <ul style="width: 80%;"> <!-- font-size: 22px;">   display: block"> -->
+                            <li>Websocket revealed
+                                <div class="ulist">
+                                    <ul>
+                                        <li><p>Full-duplex single
+                                            socket connection</p></li>
+                                        <li><p>HTTP request followed
+                                            by WebSocket data
+                                            Packets exchange</p></li>
+                                        <li><p>ws:// and wss:// protocol</p></li>
+                                        <li><p>Developed part of HTML5 initiative</p></li>
+                                        <li><p>Specification rfc-6455 (Dec-2011) managed by IETF Task Force</p></li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    </section>
+                    <section>
+                        <h2>Basement Level 1</h2>
+                        <p>Nested slides are useful for adding additional detail underneath a high level horizontal slide.</p>
+                    </section>
+                    <section>
+                        <h2>Basement Level 2</h2>
+                        <p>Nested slides are useful for adding additional detail underneath a high level horizontal slide.</p>
+                    </section>
+                </section>
+                <section>
+                    <div style="position: relative; min-height: 100vh" >
+                    <p style="position:absolute;bottom:10px">position 1</p>
+                    </div>
+                </section>
+            <!-- Testing -->
+                <section>
+                    <h3>Testseite</h3>
+                    <div style="display:flex;">
+                        <div data-markdown style="flex: 0 0 25%;">
+                            <textarea data-template >
+                            ![Me](/anz.jpg)
+                            </textarea>
+                        </div>
+                        <div data-markdown style="flex: 1;">
+                            <textarea data-template >
+                            - ...
+                            - ...
+                            - ...
+                            </textarea>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <div style="position: relative; min-height: 100vh" >
+                    <p style="position:absolute;bottom:10px">position 2</p>
+                    </div>
+                </section>
+                <section> 3</section>
+                <section data-markdown>
+                    <textarea data-template>
+                    ## Page title
+
+                    - Item 1
+                    - Item 2
+
+                    A paragraph with some text and a [link](http://hakim.se).
+                    </textarea>
+                </section>
+                <section>
+                <!-- contenteditable -->
+                <div >
+                    <pre width="45%"><code class="hljs" data-trim data-noescape>
+                        func (i *Item) Update(f ItemUpdateFunc) {
+                            <mark>f(i)</mark>
+                        }
+
+                        func (i *DecoratedItem) Update() {
+                            <mark>i.updateFunc(&i.item)</mark>
+                        }
+                    </code></pre>
+                    </div>
+                </section>
+                <section data-markdown>
+                    <script type="text/template">
+                        ## Markdown support
+
+                        Write content using inline or external Markdown.
+                        Instructions and more info available in the [readme](https://github.com/hakimel/reveal.js#markdown).
+
+                        ```
+                        <section data-markdown>
+                          ## Markdown support
+
+                          Write content using inline or external Markdown.
+                          Instructions and more info available in the [readme](https://github.com/hakimel/reveal.js#markdown).
+                        </section>
+                        ```
+                    </script>
+                </section>
+            </div>
+        </div>
+
+        <!-- Header and Footer Script -->
+        <script src="js/jquery-2.2.4.min.js"></script>
+        <script type="text/javascript">
+            // 3. On Reveal.js ready event, copy header/footer <div> into each `.slide-background` <div>
+            var header = $('#header').html();
+            if ( window.location.search.match( /print-pdf/gi ) ) {
+                Reveal.addEventListener( 'ready', function( event ) {
+                    $('.slide-background').append(header);
+                });
+            }
+            else {
+                $('div.reveal').append(header);
+           }
+        </script>
+
+        <script src="lib/js/head.min.js"></script>
+        <script src="js/reveal.js"></script>
+
+        <script>
+            Reveal.initialize({
+                controls: true,
+                /* controlsLayout: 'edges',*/
+                progress: true,
+                history: true,
+                center: true,
+                slideNumber: 'c/t',
+                transition: 'fade',
+
+                dependencies: [
+                    { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+                    { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+                    { src: 'plugin/search/search.js', async: true },
+                    <!-- { src: 'plugin/zoom-js/zoom.js', async: true }, -->
+                    { src: 'plugin/notes/notes.js', async: true },
+                ]
+                });
+        </script>
+
+    </body>
+</html>
