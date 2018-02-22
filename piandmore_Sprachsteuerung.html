@@ -1,0 +1,246 @@
+<!doctype html>
+<html  lang="de">
+<!--
+    CC-BY-4.0 2017 Andreas Zilly
+-->
+    <head>
+        <meta charset="utf-8" />
+
+        <title>Pi and more 10.5 - Sprachsteuerung mit dem Raspberry Pi</title>
+        <meta name="description" content="Sprachsteuerung mit dem Raspberry Pi" />
+        <meta name="author" content="Andreas Zilly" />
+
+        <link rel="stylesheet" href="css/reveal.css" />
+        <link rel="stylesheet" href="css/theme/solarized.css" id="theme" />
+        <link rel="stylesheet" href="css/custom.css">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+        <!-- Theme used for syntax highlighting of code -->
+        <link rel="stylesheet" href="lib/css/zenburn.css">
+
+        <!-- font-awesome -->
+        <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+
+        <!-- Printing and PDF exports -->
+        <script>
+            var link = document.createElement( 'link' );
+            link.rel = 'stylesheet';
+            link.type = 'text/css';
+            link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+            document.getElementsByTagName( 'head' )[0].appendChild( link );
+        </script>
+    </head>
+    <body>
+        <!-- Header und Footer (from custom.css) -->
+        <div id="hidden" style="display:none;">
+            <div id="header">
+                <div id="header-center">Sprachsteuerung mit dem Raspberry Pi</div>
+                <div id="header-left">Pi and more 10.5</div>
+                <div id="header-right">24.02.2018</div>
+                <div id="footer-left"><i class="fa fa-twitter"></i>@AndreasZilly</div>
+            </div>
+        </div>
+
+<!-- Grobeinteilung
+      1 - Titel
+      2 - Über
+      3 - Agenda
+      4_1 - Einführung - Spracherkennung allgemein
+        4_2 - Einführung - Spracherkennung amazon/google
+        4_3 - Einführung - Sprachsteuerung
+        5_1 - Sprachsteuerung Raspi + alexa minimal
+        5_2 - Sprachsteuerung minimal (mini) demo
+        6_1 - Sprachsteuerung Alexa skill -> Ampelsteuerung
+        6_x - Sprachsteuerung (+++)
+        6_y - Sprachsteuerung Alexa skill demo minimal Ampelsteuerung ( || LEDs an GPIO )
+        7_1 - Sprachsteuerung Assistant Action -> Ampelsteuerung
+        7_x - Sprachsteuerung (+++)
+        7_y - Sprachsteuerung Action demo minimal Ampelsteuerung
+        8_1 - Respeaker 4mic array, LEDs, Richtungsanzeige (...)
+        8_x - Sprachsteuerung Action demo minimal Ampelsteuerung
+        9_1 - google aiy voice kit
+        9_x - google aiy voice kit
+        10_1 - Zusammenfassung
+        10_2 - ? Ausblick
+        11 - Ende
+-->
+        <!-- Präsentation -->
+        <div class="reveal">
+            <div class="slides">
+                <!-- Titel, Bio, Agenda -->
+                <section>
+                    <h1>Sprachsteuerung mit dem Raspberry Pi</h1>
+                    <h3>Andreas Zilly</h3>
+                    <div>
+                        <p>wo was wie</p>
+                    </div>
+                    +logos....
+                </section>
+                <section>
+                    <h3>bio</h3>
+                    <img src="img/Photo_azy.jpg">
+                    <p align="left"><i class="fa fa-twitter"></i>@AndreasZilly</p>
+                    <p align="left"><i class="fa fa-github"></i>www.github.com/azilly-de</p>
+                    <p align="left"><i class="fa fa-envelope"></i>andreas.zilly@???????.de</p>
+                </section>
+                <section>
+                    <div data-markdown>
+                        <textarea data-template>
+                        #### Agenda
+                        - ...
+                        - Fazit
+                        </textarea>
+                    </div>
+                </section>
+
+        <!-- INHALT -->
+            <!-- Einführung -->
+                <section>
+                    <section>
+                        <h3>Spracherkennung</h3>
+
+                    </section>
+                    <section>
+                        <h3>Spracherkennung mit Amazon und Google</h3>
+
+                    </section>
+                    <section>
+                        <h3>Sprachsteuerung</h3>
+
+                    </section>
+                </section>
+
+            <!-- Sprachsteuerung minimal -->
+                <section>
+               <section>
+                  <h3>Sprachsteuerung</h3>
+                  <p>Raspi + alexa minimal</p>
+               </section>
+               <!-- ... -->
+               <section>
+                  <p>Demo</p>
+               </section>
+                </section>
+
+            <!-- Sprachsteuerung Alexa Skill-->
+                <section>
+               <section>
+                  <h3>Sprachsteuerung</h3>
+                  <p>alexa skill ampel</p>
+               </section>
+               <!-- ... -->
+               <section>
+                  <p>Demo</p>
+               </section>
+                </section>
+
+            <!-- Sprachsteuerung Assistant Action -->
+                <section>
+               <section>
+                  <h3>Sprachsteuerung</h3>
+                  <p>Assistant Action</p>
+               </section>
+               <!-- ... -->
+               <section>
+                  <p>Demo</p>
+               </section>
+                </section>
+
+            <!-- Zusätzliche Hardware -->
+                <section>
+                    <h3>Testseite</h3>
+
+                </section>
+
+        <!-- Weiterführende Dokumentation -->
+                <section>
+                    <h2>Weiterführende Dokumentation</h2>
+                    Dokumentation [link](https://github.com/torvalds/linux/tree/master/drivers/usb/gadget)
+                </section>
+
+        <!-- Weitere Möglichkeiten -->
+                <section>
+                    <h2>Weitere Möglichkeiten</h2>
+                </section>
+
+        <!-- Fazit -->
+                <section>
+                    <h2>Fazit</h2>
+                </section>
+
+        <!-- Abschluss -->
+                <section>
+                    <h3>Abschluss</h3>
+                    <!-- <div style="position: relative" > -->
+                        <!-- <img class="img-inline"  src="/anz.jpg" /> -->
+                        <!-- <img class="img-inline" style="position: absolute; top: 0; left: 55px;" src="/anz.jpg" /> -->
+                    <!-- </div> -->
+                </section>
+
+                <section>
+                        <section>
+                      <h2>Resources</h2>
+                      <p>
+                        <a href="https://github.com/keimlink/the-title-of-your-presentation">
+                          <i class="fa fa-github"></i>keimlink/the-title-of-your-presentation
+                        </a>
+                      </p>
+                      <p>
+                        <a href="https://twitter.com/keimlink">
+                          <i class="fa fa-twitter"></i>@keimlink
+                        </a>
+                      </p>
+                      <p class="creativecommons">
+                        <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+                          <img alt="Creative Commons License" src="img/cc-by-88x31.png" />
+                        </a><br>
+                        <span>This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+                      </p>
+                    </section>
+                </section>
+            </div>
+        </div>
+
+        <!-- Header and Footer Script -->
+        <script src="js/jquery-2.2.4.min.js"></script>
+        <script type="text/javascript">
+            // 3. On Reveal.js ready event, copy header/footer <div> into each `.slide-background` <div>
+            var header = $('#header').html();
+            if ( window.location.search.match( /print-pdf/gi ) ) {
+                Reveal.addEventListener( 'ready', function( event ) {
+                    $('.slide-background').append(header);
+                });
+            }
+            else {
+                $('div.reveal').append(header);
+           }
+        </script>
+
+        <script src="lib/js/head.min.js"></script>
+        <script src="js/reveal.js"></script>
+
+        <script>
+            Reveal.initialize({
+                controls: true,
+                /* controlsLayout: 'edges',*/
+                progress: true,
+                history: true,
+                center: true,
+                slideNumber: 'c/t',
+                transition: 'fade',
+
+                dependencies: [
+                    { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+                    { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+                    { src: 'plugin/search/search.js', async: true },
+                    <!-- { src: 'plugin/zoom-js/zoom.js', async: true }, -->
+                    { src: 'plugin/notes/notes.js', async: true },
+                ]
+                });
+        </script>
+
+    </body>
+</html>
