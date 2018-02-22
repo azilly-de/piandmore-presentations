@@ -50,16 +50,18 @@
                     <h1>Raspberry Pi Zero als USB Gadget</h1>
                     <h3>Andreas Zilly</h3>
                     <div>
-                        <p>wo was wie</p>
+                        <p>Pi and more 10.5 - 24.02.2018</p>
+                        <p>Uni Stuttgart</p>
                     </div>
                     +logos....
                 </section>
                 <section>
-                    <h3>bio</h3>
+                    <h3>Andreas Zilly</h3>
                     <img src="img/Photo_azy.jpg">
                     <p align="left"><i class="fa fa-twitter"></i>@AndreasZilly</p>
                     <p align="left"><i class="fa fa-github"></i>www.github.com/azilly-de</p>
-                    <p align="left"><i class="fa fa-envelope"></i>andreas.zilly@???????.de</p>
+                    <!-- <p align="left"><i class="fa fa-envelope"></i>andreas.zilly@???????.de</p> -->
+                    <p align="left"><i class="fa fa-globe"></i>ADRESSE</p>
                 </section>
                 <section>
                     <div data-markdown>
@@ -109,7 +111,7 @@
                         <div style="display:flex;">
                         <div data-markdown style="flex: 0 0 45%;">
                             <textarea data-template >
-				    ![RaspberryPi Zero W](img/usb_gadget/Raspberry-Pi-Zero_W_sm.jpg)
+                            ![RaspberryPi Zero W](img/usb_gadget/Raspberry-Pi-Zero_W_sm.jpg)
                             </textarea>
                         </div>
                         <div data-markdown style="flex: 1;">
@@ -167,24 +169,23 @@
                     - Audio *(g_audio)*
                     - Webcam *(g_webcam)*
                     - Mehrere Geräte gleichzeitig *(g_multi)* => ether, serial, mass_storage
-			    </textarea>
+                    </textarea>
                     <!-- https://github.com/torvalds/linux/tree/master/drivers/usb/gadget       => zur weiterführenden Dokumentation verschieben         -->
                 </section>
 
         <!--Grundkonfiguration -->
               <section>
                 <h2>Grundlegende Konfiguration</h2>
-                <section>
-                    * image auf sd card transferieren
-                    * boot-Partition öffnen (unter ... möglich)
-                    * leere Datei "ssh" anlegen (z.B. touch ssh)
-                    <!-- <p>Aktivierung ssh Dienst </p> -->
-                    <!-- <div> -->
-                        <!-- <p>$ touch ssh</p> -->
-                    <!-- </div> -->
+                <section data-markdown>
+                    <textarea data-template>
+                    - Raspbian herunterladen und wie gewohnt auf SD-Karte transferieren
+                    - Boot-Partition der SD-Karte öffnen (vfat)
+                    - Falls benötigt leere Datei "ssh" anlegen, damit beim Booten der SSH-Daemon gestartet wird
+                    </textarea>
                 </section>
                 <section>
                     <div>
+                        <p>Editieren &lt;sdcard&gt; boot/config.txt</p>
                         <pre><code class="hljs" data-trim data-noescape>
                             #...
                             #dtparam=spi=on
@@ -201,7 +202,7 @@
                             dtoverlay=dwc2</mark>
                         </code></pre>
                     </div>
-                    <p>edit config.txt</p>
+
                 </section>
                 </section>
 
@@ -209,7 +210,7 @@
                 <section>
                     <h2>Ethernet Gadget</h2>
                     <section>
-                        <p>Editieren "cmdline.txt": </p>
+                        <p>Editieren &lt;sdcard&gt; boot/cmdline.txt</p>
                         <div>
                             <pre><code class="hljs" data-trim data-noescape>
                             dwc_otg.lpm_enable=0 console=serial0,115200 console=tty1
@@ -236,7 +237,7 @@
                 <section>
                     <h2>Remote GPIO</h2>
                     <section>
-                        <p>Editieren "cmdline.txt": </p>
+                        <p>Editieren &lt;sdcard&gt; boot/cmdline.txt</p>
                         <div>
                             <pre><code class="hljs" data-trim data-noescape>
                             dwc_otg.lpm_enable=0 console=serial0,115200 console=tty1
@@ -255,6 +256,7 @@
                     <section>
                         Was wird noch benötigt? (Linux Kenntnisse ;P)
                         !! LED an GPIO !!
+                        dtoverlay=dwc2,dr_mode=peripheral
                     </section>
                     <section>
                         <h2>Demo</h2>
@@ -281,7 +283,7 @@
                 <section>
                     <h2>Serielles Gadget</h2>
                     <section>
-                        <p>Editieren "cmdline.txt": </p>
+                        <p>Editieren &lt;sdcard&gt; boot/cmdline.txt</p>
                         <div>
                             <pre><code class="hljs" data-trim data-noescape>
                             dwc_otg.lpm_enable=0 console=serial0,115200 console=tty1
@@ -314,6 +316,11 @@
                 <section>
                     <h2>Weiterführende Dokumentation</h2>
                     Dokumentation [link](https://github.com/torvalds/linux/tree/master/drivers/usb/gadget)
+                    https://github.com/torvalds/linux/tree/master/Documentation/usb
+                     https://github.com/torvalds/linux/tree/master/Documentation/usb/mass-storage.txt
+                     Allgemein:
+                     Massenspeicher:
+                     http://www.linux-usb.org/gadget/
                 </section>
 
         <!-- Weitere Möglichkeiten -->
@@ -337,7 +344,7 @@
 
                 <section>
                         <section>
-                      <h2>Resources</h2>
+                      <h2>Resources - wird zu danke</h2>
                       <p>
                         <a href="https://github.com/azilly-de/piandmore-presentations">
                           <i class="fa fa-github"></i>azilly-de/piandmore-presentations
