@@ -47,21 +47,20 @@
             <div class="slides">
                 <!-- Titel, Bio, Agenda -->
                 <section>
-                    <h1>Raspberry Pi Zero als USB Gadget</h1>
-                    <h3>Andreas Zilly</h3>
+                    <h2>Raspberry Pi Zero als USB Gadget</h2>
+                    <h4>Andreas Zilly</h4>
                     <div>
                         <p>Pi and more 10.5 - 24.02.2018</p>
-                        <p>Uni Stuttgart</p>
                     </div>
-                    +logos....
+                    <img src="img/logo_raspi.png" width="200">
+                    <img src="img/usb_gadget/USB_OTG_Logo.svg.png" width="200">
                 </section>
                 <section>
                     <h3>Andreas Zilly</h3>
                     <img src="img/Photo_azy.jpg">
                     <p align="left"><i class="fa fa-twitter"></i>@AndreasZilly</p>
                     <p align="left"><i class="fa fa-github"></i>www.github.com/azilly-de</p>
-                    <!-- <p align="left"><i class="fa fa-envelope"></i>andreas.zilly@???????.de</p> -->
-                    <p align="left"><i class="fa fa-globe"></i>ADRESSE</p>
+                    <p align="left"><i class="fa fa-globe"></i>blog.andreas-zilly.info</p>
                 </section>
                 <section>
                     <div data-markdown>
@@ -178,7 +177,7 @@
                 <h2>Grundlegende Konfiguration</h2>
                 <section data-markdown>
                     <textarea data-template>
-                    - Raspbian herunterladen und wie gewohnt auf SD-Karte transferieren
+                    - Raspbian herunterladen und wie gewohnt auf SD-Karte kopieren
                     - Boot-Partition der SD-Karte öffnen (vfat)
                     - Falls benötigt leere Datei "ssh" anlegen, damit beim Booten der SSH-Daemon gestartet wird
                     </textarea>
@@ -193,7 +192,7 @@
                             # Uncomment this to enable the lirc-rpi module
                             #dtoverlay=lirc-rpi
 
-                            # Additional overlays and parameters are documented /boot/overlays/R..
+                            # Additional overlays and parameters are documented /boot/over..
 
                             # Enable audio (loads snd_bcm2835)
                             dtparam=audio=on
@@ -265,7 +264,7 @@
 
         <!-- HID -->
         <!-- Zeitlich überhaupt möglich? - Vorbereitung? über configfs -->
-                <section>
+        <!--        <section>
                     <section>
                         <h3>HID</h3>
                         Taster am gpio (Pogopins und Breadboard)
@@ -278,7 +277,7 @@
                         <h2>Demo</h2>
                     </section>
                 </section>
-
+        -->
         <!-- Serielles Gadget -->
                 <section>
                     <h2>Serielles Gadget</h2>
@@ -313,14 +312,18 @@
                 </section>
 
         <!-- Weiterführende Dokumentation -->
-                <section>
-                    <h2>Weiterführende Dokumentation</h2>
-                    Dokumentation [link](https://github.com/torvalds/linux/tree/master/drivers/usb/gadget)
+                <section data-markdown>
+                    <textarea data-template>
+                    ## Weiterführende Dokumentation
+
+                    [link](https://github.com/torvalds/linux/tree/master/drivers/usb/gadget)
+
                     https://github.com/torvalds/linux/tree/master/Documentation/usb
-                     https://github.com/torvalds/linux/tree/master/Documentation/usb/mass-storage.txt
-                     Allgemein:
-                     Massenspeicher:
-                     http://www.linux-usb.org/gadget/
+                    https://github.com/torvalds/linux/tree/master/Documentation/usb/mass-storage.txt
+                    Allgemein:
+                    Massenspeicher:
+                    http://www.linux-usb.org/gadget/
+                    </textarea>
                 </section>
 
         <!-- Weitere Möglichkeiten -->
@@ -343,8 +346,8 @@
                 </section>
 
                 <section>
-                        <section>
-                      <h2>Resources - wird zu danke</h2>
+                   <section>
+                      <h2>Resources</h2>
                       <p>
                         <a href="https://github.com/azilly-de/piandmore-presentations">
                           <i class="fa fa-github"></i>azilly-de/piandmore-presentations
@@ -361,8 +364,9 @@
                         </a><br>
                         <span>This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
                       </p>
-                    </section>
+                   </section>
                 </section>
+
             </div>
         </div>
 
