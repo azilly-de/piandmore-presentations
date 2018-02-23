@@ -1,7 +1,7 @@
 <!doctype html>
 <html  lang="de">
 <!--
-    CC-BY-4.0 2017 Andreas Zilly
+    CC-BY-4.0 2018 Andreas Zilly
 -->
     <head>
         <meta charset="utf-8" />
@@ -50,10 +50,11 @@
                     <h2>Raspberry Pi Zero als USB Gadget</h2>
                     <h4>Andreas Zilly</h4>
                     <div>
-                        <p>Pi and more 10.5 - 24.02.2018</p>
+                        <p>Pi and more 10.5</p>
+                        <p>24.02.2018</p>
                     </div>
-                    <img src="img/logo_raspi.png" width="200">
-                    <img src="img/usb_gadget/USB_OTG_Logo.svg.png" width="200">
+                     <img src="img/logo_raspi.png" width="180">
+                     <img src="img/usb_gadget/USB_OTG_Logo.svg.png" width="180">
                 </section>
                 <section>
                     <h3>Andreas Zilly</h3>
@@ -81,7 +82,7 @@
                 </section>
 
         <!-- Raspberry Pi Zero (W) -->
-        <!-- <img src="img/usb_gadget/Raspberry-Pi-Zero-Overhead-1-1748x1080.jpg" width="200"> -->
+        <!-- pi@raspberrypi: ~ $  Prompt -->
                 <section>
                     <section>
                         <h3>Raspberry Pi Zero</h3>
@@ -169,18 +170,19 @@
                     - Webcam *(g_webcam)*
                     - Mehrere Geräte gleichzeitig *(g_multi)* => ether, serial, mass_storage
                     </textarea>
-                    <!-- https://github.com/torvalds/linux/tree/master/drivers/usb/gadget       => zur weiterführenden Dokumentation verschieben         -->
                 </section>
 
         <!--Grundkonfiguration -->
               <section>
                 <h2>Grundlegende Konfiguration</h2>
-                <section data-markdown>
+                <section>
+                  <div data-markdown>
                     <textarea data-template>
                     - Raspbian herunterladen und wie gewohnt auf SD-Karte kopieren
                     - Boot-Partition der SD-Karte öffnen (vfat)
                     - Falls benötigt leere Datei "ssh" anlegen, damit beim Booten der SSH-Daemon gestartet wird
                     </textarea>
+                  </div>
                 </section>
                 <section>
                     <div>
@@ -201,7 +203,6 @@
                             dtoverlay=dwc2</mark>
                         </code></pre>
                     </div>
-
                 </section>
                 </section>
 
@@ -224,8 +225,18 @@
                         </div>
                     </section>
                     <section>
-                        Was wird noch benötigt? (Linux Kenntnisse ;P)
-                        ahavi, bonjour für .local
+                    <div data-markdown>
+                       <textarea data-template>
+                       #### Was wird noch benötigt?
+                       - ssh-Datei auf der Boot-Partition des RasPi Zero
+                       - Zeroconf(Avahi, Bonjour) zur einfachen Namensauflösung
+                       </textarea>
+                     </div>
+                     <div>
+                        <pre><code class="hljs" data-trim data-noescape>
+                           $ ssh pi@raspberrypi.local
+                        </code></pre>
+                     </div>
                     </section>
                     <section>
                         <h2>Demo</h2>
@@ -249,13 +260,10 @@
                         <div style="border: 5px solid red;">
                             <p>Alles in einer Zeile! Keine Zeilenumbrüche einfügen!</p>
                         </div>
-                        <p>ssh benötigt?</p>
-                        <p>zusätzlich usbbootgui auf eeePC</p>
-                    </section>
-                    <section>
-                        Was wird noch benötigt? (Linux Kenntnisse ;P)
-                        !! LED an GPIO !!
-                        dtoverlay=dwc2,dr_mode=peripheral
+                        <!-- <p>ssh benötigt?</p> -->
+                        <!-- <p>zusätzlich usbbootgui auf eeePC</p> -->
+                         <!-- dtoverlay=dwc2,dr_mode=peripheral -->
+                         <!-- !! LED an GPIO !! -->
                     </section>
                     <section>
                         <h2>Demo</h2>
@@ -297,14 +305,13 @@
                         </div>
                     </section>
                     <section>
-                        <p>Auf Grund [] wird ein laufendes System benötigt:</p>
+                        <p>Zur Aktivierung wird ein laufendes System benötigt auf dem RasPi benötigt:</p>
                         <div>
                             <pre><code class="hljs" data-trim data-noescape>
                                 pi@raspberrypi:~ $ sudo systemctl enable getty@ttyGS0.service
                             </code></pre>
                         </div>
-                        Was wird noch benötigt? (Linux Kenntnisse ;P)
-                        Überprüfen ob noch nötig (...)
+                        <!-- Überprüfen ob noch nötig (...) -->
                     </section>
                     <section>
                         <h2>Demo</h2>
@@ -312,45 +319,56 @@
                 </section>
 
         <!-- Weiterführende Dokumentation -->
-                <section data-markdown>
-                    <textarea data-template>
-                    ## Weiterführende Dokumentation
-
-                    [link](https://github.com/torvalds/linux/tree/master/drivers/usb/gadget)
-
-                    https://github.com/torvalds/linux/tree/master/Documentation/usb
-                    https://github.com/torvalds/linux/tree/master/Documentation/usb/mass-storage.txt
-                    Allgemein:
-                    Massenspeicher:
-                    http://www.linux-usb.org/gadget/
-                    </textarea>
+                <section>
+                    <h2> Weiterführende Dokumentation </h2>
+                    <div align="left" style="padding-bottom:10px;">
+                     <b>Allgemein:</b>
+                     https://www.kernel.org/doc/Documentation/usb/
+                    </div>
+                    <div align="left" style="padding-bottom:10px;">
+                    <b>Gadgets:</b>
+                    https://www.kernel.org/doc/Documentation/usb/gadget*.txt
+                    </div>
+                    <div align="left" style="padding-bottom:10px;">
+                    <b>Configfs:</b>
+                    https://www.kernel.org/doc/Documentation/usb/gadget_configfs.txt
+                    </div>
+                    <div align="left" style="padding-bottom:10px;">
+                    <b>Massenspeicher:</b>
+                    https://www.kernel.org/doc/Documentation/usb/mass-storage.txt
+                    </div>
+                    <!-- https://developer.ridgerun.com/wiki/index.php/How_to_use_configfs -->
                 </section>
 
         <!-- Weitere Möglichkeiten -->
                 <section>
                     <h2>Weitere Möglichkeiten</h2>
+                     <div style="position: relative" >
+                        <img class="img-inline" src="img/usb_gadget/DigitalerBilderrahmen.jpg" />
+                        <img class="img-inline" src="img/usb_gadget/rubber_ducky.jpg" />
+                        <img class="img-inline" src="img/usb_gadget/kali-logo.png" />
+                    </div>
+                    <div data-markdown>
+                        <textarea data-template>
+                        - Digitaler Bilderrahmen (Mass Storage)
+                        - Rubber Ducky (HID) oder Bash Bunny (Ethernet)
+                        - Kali Linux (Ethernet)
+                        </textarea>
+                    </div>
                 </section>
 
         <!-- Fazit -->
-                <section>
-                    <h2>Fazit</h2>
-                </section>
+                <!-- <section> -->
+                    <!-- <h2>Fazit</h2> -->
+                <!-- </section> -->
 
         <!-- Abschluss -->
                 <section>
-                    <h3>Abschluss</h3>
-                    <!-- <div style="position: relative" > -->
-                        <!-- <img class="img-inline"  src="/anz.jpg" /> -->
-                        <!-- <img class="img-inline" style="position: absolute; top: 0; left: 55px;" src="/anz.jpg" /> -->
-                    <!-- </div> -->
-                </section>
-
-                <section>
                    <section>
-                      <h2>Resources</h2>
+                      <h2>Danke für eure Aufmerksamkeit</h2>
                       <p>
                         <a href="https://github.com/azilly-de/piandmore-presentations">
-                          <i class="fa fa-github"></i>azilly-de/piandmore-presentations
+                           <i class="fa fa-github"></i>github.com/azilly-de/piandmore-presentations
                         </a>
                       </p>
                       <p>
@@ -362,11 +380,14 @@
                         <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
                           <img alt="Creative Commons License" src="img/cc-by-88x31.png" />
                         </a><br>
+                         <small>
                         <span>This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+                        </small>
                       </p>
                    </section>
                 </section>
 
+            <!-- Ende der Präsentation -->
             </div>
         </div>
 
